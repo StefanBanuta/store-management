@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabel Produse Alimentare</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        .adauga-form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabel Produse Alimentare</h1>
+    <a href="/">Înapoi la Pagina Principală</a>
+    <button onclick="toggleForm()">Adaugă Produs Alimentar</button>
+
+    <div id="adaugaForm" class="adauga-form">
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Adaugă Produs Alimentar</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Denumire</th>
+                <th>Data Producției</th>
+                <th>Data Expirării</th>
+                <th>Acțiuni</th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for produs in produse %}
+                <tr>
+                    <td>{{ produs.denumire }}</td>
+                    <td>{{ produs.data_producere }}</td>
+                    <td>{{ produs.data_expirare }}</td>
+                    <td><a href="{% url 'sterge_produs_alimentar' produs.id %}">
+                            <button>Sterge</button>
+                        </a>
+                        <a href="{% url 'modifica_produs_alimentar' produs.id %}">
+                            <button>Modifică produsul alimentar</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function toggleForm() {
+            var form = document.getElementById('adaugaForm');
+            form.style.display = (form.style.display === 'none') ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ titlu_pagina }}</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .box {
+            border: 2px solid black;
+            padding: 20px;
+        }
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .links a {
+            margin-right: 20px;
+        }
+        .register-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-btn {
+            position: absolute;
+            top: 10px;
+            right: 110px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>{{ titlu_pagina }}</h1>
+        <p>Bine ați venit pe pagina principală!</p>
+    </div>
+
+    <a href="{% url 'register' %}" class="register-btn">Înregistrare</a>
+
+    <a href="{% url 'login' %}" class="login-btn">Login</a>
+
+    <div class="container">
+        <div class="box">
+            <a href="{%url 'tabela_achizitii' %}">Tabela Achizitii</a>
+            <hr>
+            <a href="{%url 'tabela_comenzi' %}">Tabela Comenzi</a>
+            <hr>
+            <a href="{% url 'tabela_clienti' %}">Tabelul Clienților</a><br>
+            <hr>
+            <a href="{% url 'lista_produse_alimentare' %}">Tabelul Produselor Alimentare</a>
+            <hr>
+            <a href="{% url 'tabela_producatori' %}">Tabelul Producatorilor</a>
+            <hr>
+    
+        </div>
+    </div>
+    
+</body>
+</html>

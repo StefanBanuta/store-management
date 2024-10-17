@@ -1,0 +1,6 @@
+<!-- modifica_produs_alimentar.html -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvează modificările</button>
+</form>

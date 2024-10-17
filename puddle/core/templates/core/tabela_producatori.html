@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabel Producători</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        .adauga-form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabel Producători</h1>
+    <a href="/">Înapoi la Pagina Principală</a>
+    <button onclick="toggleForm()">Adaugă Producător</button>
+
+    <div id="adaugaForm" class="adauga-form">
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Adaugă Producător</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Denumire</th>
+                <th>Țară</th>
+                <th>Adresa</th>
+                <th>Acțiuni</th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for producator in producatori %}
+                <tr>
+                    <td>{{ producator.denumire }}</td>
+                    <td>{{ producator.tara_origine }}</td>
+                    <td>{{ producator.adresa }}</td>
+                    <td><a href="{% url 'sterge_producator' producator.id %}">
+                            <button>Sterge</button>
+                        </a>
+                        <a href="{% url 'modifica_producator' producator.id %}">
+                            <button>Modifică producătorul</button>
+                        </a>
+                        
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function toggleForm() {
+            var form = document.getElementById('adaugaForm');
+            form.style.display = (form.style.display === 'none') ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
+
